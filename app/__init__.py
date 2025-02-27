@@ -2,15 +2,11 @@ from flask import Flask
 from app.config import load_configurations, configure_logging
 from .views import webhook_blueprint
 
+app = Flask(__name__)
 
-def create_app():
-    app = Flask(__name__)
+# Cargar configuraciones
+load_configurations(app)
+configure_logging()
 
-    # Load configurations and logging settings
-    load_configurations(app)
-    configure_logging()
-
-    # Import and register blueprints, if any
-    app.register_blueprint(webhook_blueprint)
-
-    return app
+# Registrar blueprints
+app.register_blueprint(webhook_blueprint)

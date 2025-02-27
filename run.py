@@ -1,13 +1,13 @@
 import logging
-
-from app import create_app
 import os
+from app import app  # Asegúrate de que `app` está bien definido en `app/__init__.py`
 
-app = create_app()
+logging.info("Flask app started")
 
 if __name__ == "__main__":
-    logging.info("Flask app started")
-    app.run(host=os.getenv("HOST"), port=os.getenv("PORT", 8080))
+    port = int(os.getenv("PORT", 10000))  # Render asigna automáticamente el puerto
+    app.run(host="0.0.0.0", port=port)
+
 
     #iniciar ngrok
     #shell
